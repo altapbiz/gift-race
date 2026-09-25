@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gift Race</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#05070b;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  overflow:hidden;
+}
+
+.game{
+  width:100%;
+  height:100vh;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 0%,#1c2940 0%,#080b12 45%,#030408 100%);
+}
+
+/* ÜST */
+.header{
+  position:absolute;
+  top:12px;
+  left:12px;
+  right:12px;
+  z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.title{
+  padding:10px 14px;
+  border-radius:13px;
+  background:#101722;
+  border:1px solid #2b3b55;
+  font-size:14px;
+  font-weight:800;
+}
+
+.live{
+  background:#e90032;
+  padding:9px 13px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:12px;
+}
+
+/* XAL */
+.score{
+  position:absolute;
+  top:65px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:20;
+  background:#101722;
+  border:1px solid #34445e;
+  border-radius:20px;
+  padding:7px 20px;
+  font-weight:800;
+}
+
+/* TREK */
+.track{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:105px;
+  bottom:115px;
+  overflow:hidden;
+  border-radius:18px;
+  border:2px solid #313b4d;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #242932 0px,
+      #242932 48px,
+      #20242b 48px,
+      #20242b 96px
+    );
+}
+
+/* Yol xətləri */
+.line{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.8) 0 35px,
+    transparent 35px 75px
+  );
+}
+
+.line.one{left:25%}
+.line.two{left:50%}
+.line.three{left:75%}
+
+/* Finiş */
+.finish{
+  position:absolute;
+  right:8px;
+  top:0;
+  bottom:0;
+  width:13px;
+  background:
+    conic-gradient(
+      #fff 25%,
+      #111 0 50%,
+      #fff 0 75%,
+      #111 0
+    ) 0 0/20px 20px;
+}
+
+/* YARIŞÇI */
+.racer{
+  position:absolute;
+  left:8px;
+  width:100%;
+  height:18%;
+  transition:.45s linear;
+}
+
+.r1{top:1%}
+.r2{top:21%}
+.r3{top:41%}
+.r4{top:61%}
+.r5{top:81%}
+
+/* BAYRAQ */
+.flag{
+  position:absolute;
+  left:4px;
+  top:50%;
+  transform:translateY(-50%);
+  width:32px;
+  height:21px;
+  border-radius:3px;
+  overflow:hidden;
+  box-shadow:0 2px 7px #000;
+  z-index:10;
+}
+
+/* Azərbaycan */
+.az{
+  background:
+    linear-gradient(
+      #159447 0 33%,
+      #ed2939 33% 66%,
+      #00b5e2 66%
+    );
+}
+
+/* Türkiyə */
+.tr{
+  background:#e21b2d;
+}
+
+/* Gürcüstan */
+.ge{
+  background:
+    linear-gradient(
+      #fff 0 43%,
+      #e51b23 43% 57%,
+      #fff 57%
+    );
+}
+
+/* Rusiya */
+.ru{
+  background:
+    linear-gradient(
+      #fff 0 33%,
+      #174b9b 33% 66%,
+      #d52b1e 66%
+    );
+}
+
+/* Ukrayna */
+.ua{
+  background:
+    linear-gradient(
+      #1685d8 0 50%,
+      #ffd500 50%
+    );
+}
+
+/* MAŞIN İKONU */
+.car{
+  position:absolute;
+  left:45px;
+  top:50%;
+  transform:translateY(-50%);
+  width:82px;
+  height:30px;
+  transition:.45s linear;
+  z-index:5;
+}
+
+/* kuzov */
+.body{
+  position:absolute;
+  left:0;
+  bottom:4px;
+  width:78px;
+  height:17px;
+  border-radius:6px 15px 9px 5px;
+  background:var(--car);
+  box-shadow:
+    inset 0 -4px rgba(0,0,0,.22),
+    0 4px 10px rgba(0,0,0,.55);
+}
+
+/* üst hissə */
+.body:before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:-9px;
+  width:38px;
+  height:12px;
+  background:var(--car);
+  clip-path:polygon(15% 100%,30% 0,75% 0,100% 100%);
+}
+
+/* şüşə */
+.body:after{
+  content:"";
+  position:absolute;
+  left:27px;
+  top:-7px;
+  width:25px;
+  height:8px;
+  background:#b9e6ff;
+  opacity:.9;
+  clip-path:polygon(15% 100%,30% 0,75% 0,100% 100%);
+}
+
+/* təkərlər */
+.wheel{
+  position:absolute;
+  bottom:0;
+  width:13px;
+  height:13px;
+  background:#080808;
+  border:2px solid #687080;
+  border-radius:50%;
+}
+
+.w1{left:11px}
+.w2{right:10px}
+
+/* rənglər */
+.red{--car:#ed1741}
+.blue{--car:#2389ff}
+.green{--car:#12d879}
+.orange{--car:#ff9418}
+.purple{--car:#a855f7}
+
+/* AD */
+.player{
+  position:absolute;
+  left:138px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:11px;
+  font-weight:800;
+  z-index:15;
+  text-shadow:0 2px 5px #000;
+}
+
+/* ALT PANEL */
+.panel{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  min-height:105px;
+  padding:10px;
+  background:#090d14;
+  border-top:1px solid #263348;
+  z-index:50;
+}
+
+.gifts{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+button{
+  color:white;
+  background:#151d2b;
+  border:1px solid #34435c;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:11px;
+  font-weight:800;
+}
+
+button:active{
+  transform:scale(.94);
+}
+
+.reset{
+  display:block;
+  margin:7px auto 0;
+  background:#e90032;
+  border:0;
+}
+
+/* QALİB */
+.winner{
+  position:absolute;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.78);
+}
+
+.box{
+  width:85%;
+  padding:28px;
+  border-radius:20px;
+  text-align:center;
+  background:#111927;
+  border:1px solid #3d506e;
+}
+
+.box h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+  <div class="header">
+    <div class="title">GIFT RACE</div>
+    <div class="live">● LIVE</div>
+  </div>
+
+  <div class="score">
+    XAL: <span id="score">0</span>
+  </div>
+
+  <div class="track">
+
+    <div class="line one"></div>
+    <div class="line two"></div>
+    <div class="line three"></div>
+    <div class="finish"></div>
+
+    <!-- AZƏRBAYCAN -->
+    <div class="racer r1">
+      <div class="flag az"></div>
+
+      <div id="car1" class="car red">
+        <div class="body">
+          <i class="wheel w1"></i>
+          <i class="wheel w2"></i>
+        </div>
+      </div>
+
+      <div class="player">AZƏRBAYCAN</div>
+    </div>
+
+    <!-- TÜRKİYƏ -->
+    <div class="racer r2">
+      <div class="flag tr"></div>
+
+      <div id="car2" class="car blue">
+        <div class="body">
+          <i class="wheel w1"></i>
+          <i class="wheel w2"></i>
+        </div>
+      </div>
+
+      <div class="player">TÜRKİYƏ</div>
+    </div>
+
+    <!-- GÜRCÜSTAN -->
+    <div class="racer r3">
+      <div class="flag ge"></div>
+
+      <div id="car3" class="car green">
+        <div class="body">
+          <i class="wheel w1"></i>
+          <i class="wheel w2"></i>
+        </div>
+      </div>
+
+      <div class="player">GÜRCÜSTAN</div>
+    </div>
+
+    <!-- RUSİYA -->
+    <div class="racer r4">
+      <div class="flag ru"></div>
+
+      <div id="car4" class="car orange">
+        <div class="body">
+          <i class="wheel w1"></i>
+          <i class="wheel w2"></i>
+        </div>
+      </div>
+
+      <div class="player">RUSİYA</div>
+    </div>
+
+    <!-- UKRAYNA -->
+    <div class="racer r5">
+      <div class="flag ua"></div>
+
+      <div id="car5" class="car purple">
+        <div class="body">
+          <i class="wheel w1"></i>
+          <i class="wheel w2"></i>
+        </div>
+      </div>
+
+      <div class="player">UKRAYNA</div>
+    </div>
+
+  </div>
+
+  <div class="panel">
+
+    <div class="gifts">
+
+      <button onclick="gift(1)">
+        ROSE +1
+      </button>
+
+      <button onclick="gift(5)">
+        DIAMOND +5
+      </button>
+
+      <button onclick="gift(20)">
+        LION +20
+      </button>
+
+      <button onclick="gift(50)">
+        ROCKET +50
+      </button>
+
+    </div>
+
+    <button class="reset" onclick="resetGame()">
+      YARIŞI SIFIRLA
+    </button>
+
+  </div>
+
+  <div id="winner" class="winner">
+
+    <div class="box">
+
+      <h1>QALİB!</h1>
+
+      <p id="winnerText"></p>
+
+      <br>
+
+      <button onclick="resetGame()">
+        YENİ YARIŞ
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let score = 0;
+
+let cars = [8,8,8,8,8];
+
+let countries = [
+  "AZƏRBAYCAN",
+  "TÜRKİYƏ",
+  "GÜRCÜSTAN",
+  "RUSİYA",
+  "UKRAYNA"
+];
+
+function gift(points){
+
+  score += points;
+
+  document.getElementById("score").innerText = score;
+
+  /*
+    Hələlik test rejimidir.
+    Sonra bu funksiya real TikTok
+    gift eventindən çağırılacaq.
+  */
+
+  let random =
+    Math.floor(Math.random()*5);
+
+  cars[random] += points * 1.5;
+
+  if(cars[random] > 84){
+    cars[random] = 84;
+  }
+
+  document.getElementById(
+    "car"+(random+1)
+  ).style.left =
+    cars[random] + "%";
+
+  if(cars[random] >= 84){
+
+    document.getElementById(
+      "winnerText"
+    ).innerText =
+      countries[random] +
+      " finişə çatdı!";
+
+    document.getElementById(
+      "winner"
+    ).style.display = "flex";
+  }
+}
+
+function resetGame(){
+
+  score = 0;
+
+  document.getElementById("score")
+    .innerText = "0";
+
+  cars = [8,8,8,8,8];
+
+  for(let i=1;i<=5;i++){
+
+    document.getElementById(
+      "car"+i
+    ).style.left = "8%";
+  }
+
+  document.getElementById(
+    "winner"
+  ).style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
