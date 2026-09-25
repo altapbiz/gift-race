@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<title>GIFT RACE</title>
+<title>UKRAINE VS RUSSIA</title>
 
 <style>
 *{
@@ -34,47 +34,97 @@ body{
   height:100dvh;
   display:flex;
   flex-direction:column;
-  background:#08080d;
+  background:
+    radial-gradient(circle at top,#20202a,#07070b 60%);
 }
+
 
 /* HEADER */
 
 .header{
-  height:70px;
-  min-height:70px;
+  height:76px;
+  min-height:76px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 15px;
+
+  padding:0 14px;
+
   background:#101016;
-  border-bottom:1px solid #292933;
+  border-bottom:1px solid #30303a;
 }
 
-.logo{
-  font-size:22px;
+.title{
+  font-size:18px;
   font-weight:900;
 }
 
 .live{
   background:#ff1744;
-  padding:8px 14px;
+  padding:8px 13px;
   border-radius:20px;
-  font-size:13px;
+  font-size:12px;
   font-weight:900;
 }
 
-.score{
+.total{
   text-align:right;
 }
 
-.score small{
+.total span{
   display:block;
-  font-size:10px;
   color:#999;
+  font-size:9px;
 }
 
-.score strong{
-  font-size:23px;
+.total strong{
+  font-size:20px;
+}
+
+
+/* SCORE */
+
+.scoreboard{
+  height:105px;
+  min-height:105px;
+
+  display:grid;
+  grid-template-columns:1fr 80px 1fr;
+  align-items:center;
+
+  padding:8px 10px;
+
+  background:#0c0c12;
+  border-bottom:1px solid #292932;
+}
+
+.team{
+  text-align:center;
+}
+
+.team-name{
+  font-size:16px;
+  font-weight:900;
+}
+
+.team-score{
+  margin-top:5px;
+  font-size:24px;
+  font-weight:900;
+}
+
+.team-limit{
+  margin-top:2px;
+  color:#777;
+  font-size:9px;
+}
+
+.vs{
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  color:#777;
 }
 
 
@@ -83,43 +133,55 @@ body{
 .race{
   flex:1;
   min-height:0;
+
   margin:8px;
-  border:2px solid #292933;
-  border-radius:15px;
-  overflow:hidden;
+
   position:relative;
-  background:#111117;
+  overflow:hidden;
+
+  border:2px solid #2c2c37;
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #111117,
+      #181820,
+      #111117
+    );
 }
 
 .finish{
   position:absolute;
-  right:15px;
+
+  right:18px;
   top:0;
   bottom:0;
-  width:6px;
+
+  width:7px;
+
   z-index:10;
 
   background:
-  repeating-linear-gradient(
-    to bottom,
-    #fff 0px,
-    #fff 12px,
-    #111 12px,
-    #111 24px
-  );
+    repeating-linear-gradient(
+      to bottom,
+      #fff 0 12px,
+      #111 12px 24px
+    );
 }
 
 
-/* LANE */
+/* LANES */
 
 .lane{
-  height:20%;
   position:relative;
-  border-bottom:1px dashed #3b3b45;
+  height:50%;
+
+  border-bottom:1px dashed #3a3a45;
 }
 
 .lane:last-child{
-  border-bottom:none;
+  border-bottom:0;
 }
 
 
@@ -127,19 +189,18 @@ body{
 
 .country{
   position:absolute;
-  left:7px;
-  top:50%;
-  transform:translateY(-50%);
 
-  width:105px;
+  left:8px;
+  top:9px;
 
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
 
-  padding:6px 7px;
+  padding:6px 9px;
 
-  background:rgba(0,0,0,.75);
+  background:rgba(0,0,0,.72);
+
   border:1px solid #393943;
   border-radius:9px;
 
@@ -147,15 +208,47 @@ body{
 }
 
 .flag{
-  font-size:29px;
+  font-size:31px;
   line-height:1;
-  flex-shrink:0;
 }
 
 .country-name{
-  font-size:11px;
+  font-size:13px;
   font-weight:900;
-  white-space:nowrap;
+}
+
+
+/* PROGRESS */
+
+.progress{
+  position:absolute;
+
+  left:8px;
+  right:18px;
+  bottom:8px;
+
+  height:5px;
+
+  background:#292932;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+
+  border-radius:10px;
+
+  transition:width .4s ease;
+}
+
+.ukraine-bar{
+  background:#2589ff;
+}
+
+.russia-bar{
+  background:#ff3d52;
 }
 
 
@@ -163,71 +256,88 @@ body{
 
 .car{
   position:absolute;
+
   left:125px;
-  top:50%;
+  top:56%;
+
+  width:90px;
+  height:43px;
+
   transform:translateY(-50%);
-  width:82px;
-  height:40px;
-  transition:left .45s ease;
-  z-index:5;
+
+  transition:left .45s cubic-bezier(.2,.8,.2,1);
+
+  z-index:6;
 }
 
 .car-body{
   position:absolute;
-  width:66px;
-  height:24px;
-  left:8px;
-  top:8px;
 
-  border-radius:7px 13px 8px 8px;
+  left:7px;
+  top:10px;
+
+  width:73px;
+  height:25px;
+
+  border-radius:7px 14px 8px 8px;
+
+  border:2px solid #252525;
 
   background:linear-gradient(
     180deg,
     #eee,
     #777
   );
-
-  border:2px solid #292929;
 }
 
 .car-top{
   position:absolute;
-  width:34px;
-  height:18px;
-  left:21px;
+
+  left:22px;
   top:0;
 
-  border-radius:9px 10px 2px 2px;
+  width:38px;
+  height:20px;
+
+  border-radius:10px 10px 2px 2px;
+
+  border:2px solid #252525;
 
   background:#777;
-  border:2px solid #292929;
+
+  z-index:2;
 }
 
 .window{
   position:absolute;
-  width:24px;
-  height:10px;
-  left:3px;
+
+  left:4px;
   top:3px;
 
-  background:#101722;
+  width:26px;
+  height:11px;
+
+  background:#111923;
+
   border-radius:4px;
 }
 
 .wheel{
   position:absolute;
-  width:14px;
-  height:14px;
 
   bottom:0;
 
+  width:15px;
+  height:15px;
+
+  border-radius:50%;
+
   background:#050505;
   border:2px solid #555;
-  border-radius:50%;
 }
 
 .wheel.one{
-  left:14px;
+  left:13px;
 }
 
 .wheel.two{
@@ -235,153 +345,148 @@ body{
 }
 
 
-/* CAR COLORS */
+/* COLORS */
 
-.red .car-body{
-  background:linear-gradient(180deg,#ff536b,#900017);
+.ukraine-car .car-body{
+  background:linear-gradient(
+    180deg,
+    #3f9cff,
+    #0751a8
+  );
 }
 
-.blue .car-body{
-  background:linear-gradient(180deg,#52aaff,#07509d);
-}
-
-.green .car-body{
-  background:linear-gradient(180deg,#4ee58a,#08743b);
-}
-
-.yellow .car-body{
-  background:linear-gradient(180deg,#ffe86d,#b68700);
-}
-
-.purple .car-body{
-  background:linear-gradient(180deg,#c875ff,#66229a);
+.russia-car .car-body{
+  background:linear-gradient(
+    180deg,
+    #ff5366,
+    #940014
+  );
 }
 
 
-/* PLAYER NAME */
+/* GIFT INFO */
 
-.player-name{
+.gift-info{
   position:absolute;
 
-  left:220px;
-  top:9px;
+  right:10px;
+  top:10px;
 
-  font-size:10px;
-  font-weight:800;
+  padding:6px 9px;
 
-  color:#8e8e98;
+  background:rgba(0,0,0,.7);
 
-  z-index:3;
+  border:1px solid #33333d;
+  border-radius:8px;
+
+  text-align:right;
+
+  z-index:9;
+}
+
+.gift-info small{
+  display:block;
+  color:#999;
+  font-size:9px;
+}
+
+.gift-info strong{
+  font-size:12px;
 }
 
 
 /* BOTTOM */
 
 .bottom{
-  height:225px;
-  min-height:225px;
+  height:185px;
+  min-height:185px;
 
-  padding:9px 9px 11px;
+  padding:9px;
 
   background:#09090e;
 
-  border-top:1px solid #292933;
+  border-top:1px solid #292932;
 }
 
 .gift-title{
   text-align:center;
 
-  font-size:14px;
+  font-size:13px;
   font-weight:900;
 
-  color:#fff;
-
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
-
-
-/* GIFTS */
 
 .gifts{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:1fr 1fr;
+
   gap:7px;
 }
 
 .gift{
-  height:125px;
-
-  border-radius:14px;
-
-  border:1px solid #343440;
-
-  background:
-    linear-gradient(
-      180deg,
-      #1a1a24,
-      #0d0d13
-    );
+  height:62px;
 
   display:flex;
-  flex-direction:column;
+  align-items:center;
+
+  padding:7px 10px;
+
+  border-radius:11px;
+
+  background:#15151d;
+
+  border:1px solid #30303a;
+}
+
+.gift-icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
   align-items:center;
   justify-content:center;
 
-  cursor:pointer;
+  font-size:28px;
 
-  position:relative;
+  margin-right:9px;
 }
 
-.gift:active{
-  transform:scale(.96);
-}
-
-.gift img{
-  width:62px;
-  height:62px;
-
-  object-fit:contain;
-
-  margin-bottom:5px;
+.gift-text{
+  text-align:left;
 }
 
 .gift-name{
-  font-size:13px;
-  font-weight:900;
-}
-
-.gift-points{
-  margin-top:5px;
-
-  font-size:14px;
-  font-weight:900;
-
-  color:#ffd43b;
-}
-
-
-/* BUTTONS */
-
-.test{
-  width:100%;
-  height:36px;
-
-  margin-top:7px;
-
-  border:0;
-  border-radius:9px;
-
-  background:#282833;
-
-  color:#fff;
-
   font-size:12px;
   font-weight:900;
 }
 
+.gift-team{
+  margin-top:3px;
+  font-size:10px;
+  color:#aaa;
+}
+
+.test{
+  width:100%;
+  height:34px;
+
+  margin-top:7px;
+
+  border:0;
+  border-radius:8px;
+
+  background:#292934;
+
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+}
+
 .reset{
-  background:#15151c;
-  border:1px solid #30303a;
+  margin-top:5px;
+  background:#15151b;
 }
 
 
@@ -391,12 +496,11 @@ body{
   position:fixed;
   inset:0;
 
-  background:rgba(0,0,0,.8);
-
   display:none;
-
   align-items:center;
   justify-content:center;
+
+  background:rgba(0,0,0,.82);
 
   z-index:100;
 }
@@ -405,14 +509,13 @@ body{
   width:85%;
   max-width:350px;
 
-  padding:25px;
+  padding:28px;
 
   text-align:center;
 
-  background:#14141c;
+  background:#15151d;
 
-  border:1px solid #454552;
-
+  border:1px solid #444451;
   border-radius:20px;
 }
 
@@ -444,37 +547,51 @@ body{
 
 @media(max-width:380px){
 
-  .country{
-    width:98px;
+  .header{
+    height:68px;
+    min-height:68px;
+  }
+
+  .title{
+    font-size:15px;
+  }
+
+  .scoreboard{
+    height:94px;
+    min-height:94px;
+  }
+
+  .team-name{
+    font-size:14px;
+  }
+
+  .team-score{
+    font-size:21px;
   }
 
   .flag{
-    font-size:25px;
+    font-size:27px;
   }
 
   .country-name{
-    font-size:10px;
+    font-size:11px;
   }
 
   .car{
-    left:112px;
+    left:115px;
   }
 
-  .player-name{
-    left:205px;
+  .bottom{
+    height:178px;
+    min-height:178px;
   }
 
   .gift{
-    height:115px;
+    height:58px;
   }
 
-  .gift img{
-    width:55px;
-    height:55px;
-  }
-
-  .gift-points{
-    font-size:13px;
+  .gift-icon{
+    font-size:24px;
   }
 }
 
@@ -491,21 +608,66 @@ body{
 
 <div class="header">
 
-  <div class="logo">
-    GIFT RACE
+  <div class="title">
+    🇺🇦 УКРАИНА VS РОССИЯ 🇷🇺
   </div>
 
   <div class="live">
     ● LIVE
   </div>
 
-  <div class="score">
+  <div class="total">
+    <span>ВСЕГО ОЧКОВ</span>
+    <strong id="totalScore">0</strong>
+  </div>
 
-    <small>ÜMUMİ XAL</small>
+</div>
 
-    <strong id="totalScore">
+
+
+<!-- SCORE -->
+
+<div class="scoreboard">
+
+  <div class="team">
+
+    <div class="team-name">
+      🇺🇦 УКРАИНА
+    </div>
+
+    <div
+      class="team-score"
+      id="ukraineScore">
       0
-    </strong>
+    </div>
+
+    <div class="team-limit">
+      ЦЕЛЬ: 500 000
+    </div>
+
+  </div>
+
+
+  <div class="vs">
+    VS
+  </div>
+
+
+  <div class="team">
+
+    <div class="team-name">
+      🇷🇺 РОССИЯ
+    </div>
+
+    <div
+      class="team-score"
+      id="russiaScore">
+      0
+    </div>
+
+    <div class="team-limit">
+      ЦЕЛЬ: 500 000
+    </div>
 
   </div>
 
@@ -520,36 +682,44 @@ body{
   <div class="finish"></div>
 
 
-  <!-- AZERBAIJAN -->
+  <!-- UKRAINE -->
 
   <div class="lane">
 
     <div class="country">
 
       <div class="flag">
-        🇦🇿
+        🇺🇦
       </div>
 
       <div class="country-name">
-        AZERBAIJAN
+        УКРАИНА
       </div>
 
     </div>
 
 
-    <div
-      class="player-name"
-      id="name0">
-      AZERBAIJAN
+    <div class="gift-info">
+
+      <small>
+        ПОДАРОК
+      </small>
+
+      <strong id="ukraineGift">
+        ШАПКА
+      </strong>
+
     </div>
 
 
     <div
-      class="car red"
-      id="car0">
+      class="car ukraine-car"
+      id="ukraineCar">
 
       <div class="car-top">
+
         <div class="window"></div>
+
       </div>
 
       <div class="car-body"></div>
@@ -559,89 +729,13 @@ body{
 
     </div>
 
-  </div>
 
+    <div class="progress">
 
-
-  <!-- TURKEY -->
-
-  <div class="lane">
-
-    <div class="country">
-
-      <div class="flag">
-        🇹🇷
+      <div
+        class="progress-bar ukraine-bar"
+        id="ukraineProgress">
       </div>
-
-      <div class="country-name">
-        TURKEY
-      </div>
-
-    </div>
-
-
-    <div
-      class="player-name"
-      id="name1">
-      TURKEY
-    </div>
-
-
-    <div
-      class="car blue"
-      id="car1">
-
-      <div class="car-top">
-        <div class="window"></div>
-      </div>
-
-      <div class="car-body"></div>
-
-      <div class="wheel one"></div>
-      <div class="wheel two"></div>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- GEORGIA -->
-
-  <div class="lane">
-
-    <div class="country">
-
-      <div class="flag">
-        🇬🇪
-      </div>
-
-      <div class="country-name">
-        GEORGIA
-      </div>
-
-    </div>
-
-
-    <div
-      class="player-name"
-      id="name2">
-      GEORGIA
-    </div>
-
-
-    <div
-      class="car green"
-      id="car2">
-
-      <div class="car-top">
-        <div class="window"></div>
-      </div>
-
-      <div class="car-body"></div>
-
-      <div class="wheel one"></div>
-      <div class="wheel two"></div>
 
     </div>
 
@@ -660,25 +754,33 @@ body{
       </div>
 
       <div class="country-name">
-        RUSSIA
+        РОССИЯ
       </div>
 
     </div>
 
 
-    <div
-      class="player-name"
-      id="name3">
-      RUSSIA
+    <div class="gift-info">
+
+      <small>
+        ПОДАРОК
+      </small>
+
+      <strong id="russiaGift">
+        КОРОНА
+      </strong>
+
     </div>
 
 
     <div
-      class="car yellow"
-      id="car3">
+      class="car russia-car"
+      id="russiaCar">
 
       <div class="car-top">
+
         <div class="window"></div>
+
       </div>
 
       <div class="car-body"></div>
@@ -688,46 +790,13 @@ body{
 
     </div>
 
-  </div>
 
+    <div class="progress">
 
-
-  <!-- UKRAINE -->
-
-  <div class="lane">
-
-    <div class="country">
-
-      <div class="flag">
-        🇺🇦
+      <div
+        class="progress-bar russia-bar"
+        id="russiaProgress">
       </div>
-
-      <div class="country-name">
-        UKRAINE
-      </div>
-
-    </div>
-
-
-    <div
-      class="player-name"
-      id="name4">
-      UKRAINE
-    </div>
-
-
-    <div
-      class="car purple"
-      id="car4">
-
-      <div class="car-top">
-        <div class="window"></div>
-      </div>
-
-      <div class="car-body"></div>
-
-      <div class="wheel one"></div>
-      <div class="wheel two"></div>
 
     </div>
 
@@ -742,95 +811,50 @@ body{
 <div class="bottom">
 
   <div class="gift-title">
-    TIKTOK HƏDİYYƏLƏRİ
+    ПОДАРКИ TIKTOK
   </div>
 
 
   <div class="gifts">
 
 
-    <!-- GÜL -->
+    <div class="gift">
 
-    <div
-      class="gift"
-      onclick="sendGift(1)">
-
-      <img
-        src="images/rose.png"
-        alt="Gül">
-
-      <div class="gift-name">
-        Gül
+      <div class="gift-icon">
+        👑
       </div>
 
-      <div class="gift-points">
-        1 XAL
-      </div>
+      <div class="gift-text">
 
-    </div>
+        <div class="gift-name">
+          Корона
+        </div>
 
+        <div class="gift-team">
+          🇷🇺 Россия
+        </div>
 
-
-    <!-- PARFÜM -->
-
-    <div
-      class="gift"
-      onclick="sendGift(10)">
-
-      <img
-        src="images/perfume.png"
-        alt="Parfüm">
-
-      <div class="gift-name">
-        Parfüm
-      </div>
-
-      <div class="gift-points">
-        10 XAL
       </div>
 
     </div>
 
 
+    <div class="gift">
 
-    <!-- TAC -->
-
-    <div
-      class="gift"
-      onclick="sendGift(100)">
-
-      <img
-        src="images/crown.png"
-        alt="Tac">
-
-      <div class="gift-name">
-        Tac
+      <div class="gift-icon">
+        🧢
       </div>
 
-      <div class="gift-points">
-        100 XAL
-      </div>
+      <div class="gift-text">
 
-    </div>
+        <div class="gift-name">
+          Шапка
+        </div>
 
+        <div class="gift-team">
+          🇺🇦 Украина
+        </div>
 
-
-    <!-- ŞAPKA -->
-
-    <div
-      class="gift"
-      onclick="sendGift(99)">
-
-      <img
-        src="images/hat.png"
-        alt="Şapka">
-
-      <div class="gift-name">
-        Şapka
-      </div>
-
-      <div class="gift-points">
-        99 XAL
       </div>
 
     </div>
@@ -840,9 +864,18 @@ body{
 
   <button
     class="test"
-    onclick="randomGift()">
+    onclick="testRussia()">
 
-    TEST HƏDİYYƏ GÖNDƏR
+    ТЕСТ: КОРОНА → РОССИЯ
+
+  </button>
+
+
+  <button
+    class="test"
+    onclick="testUkraine()">
+
+    ТЕСТ: ШАПКА → УКРАИНА
 
   </button>
 
@@ -851,7 +884,7 @@ body{
     class="test reset"
     onclick="resetGame()">
 
-    SIFIRLA
+    СБРОСИТЬ
 
   </button>
 
@@ -870,13 +903,13 @@ body{
   <div class="winner-box">
 
     <h1>
-      🏁 QALİB!
+      🏆 ПОБЕДИТЕЛЬ
     </h1>
 
     <p id="winnerText"></p>
 
     <button onclick="closeWinner()">
-      DAVAM ET
+      ЗАКРЫТЬ
     </button>
 
   </div>
@@ -887,78 +920,73 @@ body{
 
 <script>
 
-const players = [
+/*
+==========================================
+ИГРОВЫЕ ПРАВИЛА
+==========================================
 
-  {
-    name:"AZERBAIJAN",
-    points:0,
-    position:12
-  },
+🇷🇺 КОРОНА  → РОССИЯ
+🇺🇦 ШАПКА   → УКРАИНА
 
-  {
-    name:"TURKEY",
-    points:0,
-    position:12
-  },
-
-  {
-    name:"GEORGIA",
-    points:0,
-    position:12
-  },
-
-  {
-    name:"RUSSIA",
-    points:0,
-    position:12
-  },
-
-  {
-    name:"UKRAINE",
-    points:0,
-    position:12
-  }
-
-];
+ЦЕЛЬ:
+500 000 ОЧКОВ
+==========================================
+*/
 
 
-let totalScore = 0;
+const MAX_SCORE = 500000;
+
+
+let ukraineScore = 0;
+
+let russiaScore = 0;
 
 let gameFinished = false;
 
 
-/* HƏDİYYƏ */
 
-function sendGift(points){
+/*
+------------------------------------------
+ДОБАВИТЬ ОЧКИ
+------------------------------------------
+*/
+
+function addScore(
+  team,
+  points,
+  giftName
+){
 
   if(gameFinished){
     return;
   }
 
 
-  const playerIndex =
-    Math.floor(
-      Math.random() *
-      players.length
-    );
+  if(team === "ukraine"){
+
+    ukraineScore += points;
+
+    document.getElementById(
+      "ukraineGift"
+    ).innerText =
+      giftName;
+
+  }
 
 
-  players[playerIndex].points += points;
+  if(team === "russia"){
+
+    russiaScore += points;
+
+    document.getElementById(
+      "russiaGift"
+    ).innerText =
+      giftName;
+
+  }
 
 
-  totalScore += points;
-
-
-  document.getElementById(
-    "totalScore"
-  ).innerText =
-    totalScore;
-
-
-  moveCar(
-    playerIndex,
-    points
-  );
+  updateScreen();
 
 
   checkWinner();
@@ -966,156 +994,269 @@ function sendGift(points){
 }
 
 
-/* MAŞIN */
 
-function moveCar(
-  playerIndex,
-  points
-){
+/*
+------------------------------------------
+ЭКРАН
+------------------------------------------
+*/
 
-  const player =
-    players[playerIndex];
-
-
-  const movement =
-    points * 0.55;
-
-
-  player.position +=
-    movement;
-
-
-  if(
-    player.position > 83
-  ){
-
-    player.position = 83;
-
-  }
-
-
-  const car =
-    document.getElementById(
-      "car" + playerIndex
-    );
-
-
-  car.style.left =
-    player.position + "%";
-
-}
-
-
-/* TEST */
-
-function randomGift(){
-
-  const gifts = [
-    1,
-    10,
-    100,
-    99
-  ];
-
-
-  const points =
-    gifts[
-      Math.floor(
-        Math.random() *
-        gifts.length
-      )
-    ];
-
-
-  sendGift(points);
-
-}
-
-
-/* QALİB */
-
-function checkWinner(){
-
-  for(
-    let i=0;
-    i<players.length;
-    i++
-  ){
-
-    if(
-      players[i].position >= 83
-    ){
-
-      gameFinished = true;
-
-
-      document.getElementById(
-        "winnerText"
-      ).innerText =
-        players[i].name +
-        " qalib oldu!";
-
-
-      document.getElementById(
-        "winner"
-      ).style.display =
-        "flex";
-
-
-      break;
-
-    }
-
-  }
-
-}
-
-
-/* DAVAM */
-
-function closeWinner(){
+function updateScreen(){
 
   document.getElementById(
-    "winner"
-  ).style.display =
-    "none";
+    "ukraineScore"
+  ).innerText =
+    ukraineScore.toLocaleString("ru-RU");
 
 
-  resetGame();
-
-}
-
-
-/* RESET */
-
-function resetGame(){
-
-  totalScore = 0;
-
-  gameFinished = false;
+  document.getElementById(
+    "russiaScore"
+  ).innerText =
+    russiaScore.toLocaleString("ru-RU");
 
 
   document.getElementById(
     "totalScore"
   ).innerText =
-    "0";
+    (
+      ukraineScore +
+      russiaScore
+    ).toLocaleString("ru-RU");
 
 
-  players.forEach(
-    (player,index)=>{
-
-      player.points = 0;
-
-      player.position = 12;
+  let ukrainePercent =
+    (ukraineScore / MAX_SCORE) * 100;
 
 
-      document.getElementById(
-        "car" + index
-      ).style.left =
-        "12%";
+  let russiaPercent =
+    (russiaScore / MAX_SCORE) * 100;
 
-    }
+
+  if(ukrainePercent > 100){
+    ukrainePercent = 100;
+  }
+
+
+  if(russiaPercent > 100){
+    russiaPercent = 100;
+  }
+
+
+  document.getElementById(
+    "ukraineProgress"
+  ).style.width =
+    ukrainePercent + "%";
+
+
+  document.getElementById(
+    "russiaProgress"
+  ).style.width =
+    russiaPercent + "%";
+
+
+  /*
+    Maşın finiş xəttinə doğru hərəkət edir.
+  */
+
+  const ukrainePosition =
+    125 +
+    (
+      ukrainePercent *
+      0.62
+    );
+
+
+  const russiaPosition =
+    125 +
+    (
+      russiaPercent *
+      0.62
+    );
+
+
+  document.getElementById(
+    "ukraineCar"
+  ).style.left =
+    ukrainePosition + "%";
+
+
+  document.getElementById(
+    "russiaCar"
+  ).style.left =
+    russiaPosition + "%";
+
+}
+
+
+
+/*
+------------------------------------------
+QALİB
+------------------------------------------
+*/
+
+function checkWinner(){
+
+  if(
+    ukraineScore >= MAX_SCORE
+  ){
+
+    finishGame(
+      "🇺🇦 УКРАИНА"
+    );
+
+  }
+
+
+  if(
+    russiaScore >= MAX_SCORE
+  ){
+
+    finishGame(
+      "🇷🇺 РОССИЯ"
+    );
+
+  }
+
+}
+
+
+
+/*
+------------------------------------------
+OYUNU BITIR
+------------------------------------------
+*/
+
+function finishGame(
+  winner
+){
+
+  gameFinished = true;
+
+
+  document.getElementById(
+    "winnerText"
+  ).innerText =
+    winner +
+    " достигла 500 000 очков!";
+
+
+  document.getElementById(
+    "winner"
+  ).style.display =
+    "flex";
+
+}
+
+
+
+/*
+------------------------------------------
+TEST: РОССИЯ
+------------------------------------------
+*/
+
+function testRussia(){
+
+  /*
+    Test üçün 100 xal.
+    Daha sonra TikTok-dan gələn
+    real coin dəyəri burada istifadə olunacaq.
+  */
+
+  addScore(
+    "russia",
+    100,
+    "КОРОНА"
   );
+
+}
+
+
+
+/*
+------------------------------------------
+TEST: УКРАИНА
+------------------------------------------
+*/
+
+function testUkraine(){
+
+  addScore(
+    "ukraine",
+    100,
+    "ШАПКА"
+  );
+
+}
+
+
+
+/*
+------------------------------------------
+REAL TIKTOK GIFT
+------------------------------------------
+
+Serverdən belə çağırılacaq:
+
+receiveTikTokGift(
+  "crown",
+  500
+);
+
+və ya
+
+receiveTikTokGift(
+  "hat",
+  1000
+);
+
+*/
+
+function receiveTikTokGift(
+  gift,
+  coins
+){
+
+  if(gift === "crown"){
+
+    addScore(
+      "russia",
+      coins,
+      "КОРОНА"
+    );
+
+  }
+
+
+  if(gift === "hat"){
+
+    addScore(
+      "ukraine",
+      coins,
+      "ШАПКА"
+    );
+
+  }
+
+}
+
+
+
+/*
+------------------------------------------
+RESET
+------------------------------------------
+*/
+
+function resetGame(){
+
+  ukraineScore = 0;
+
+  russiaScore = 0;
+
+  gameFinished = false;
 
 
   document.getElementById(
@@ -1123,69 +1264,32 @@ function resetGame(){
   ).style.display =
     "none";
 
+
+  document.getElementById(
+    "ukraineGift"
+  ).innerText =
+    "ШАПКА";
+
+
+  document.getElementById(
+    "russiaGift"
+  ).innerText =
+    "КОРОНА";
+
+
+  updateScreen();
+
 }
+
 
 
 /*
-=========================================
-TIKTOK HƏDİYYƏ SİSTEMİ
-=========================================
-
-Gül     = 1 xal
-Parfüm  = 10 xal
-Tac     = 100 xal
-Şapka   = 99 xal
-
-Real TikTok bağlantısı əlavə olunanda
-server bu funksiyanı çağıracaq.
+------------------------------------------
+START
+------------------------------------------
 */
 
-function receiveTikTokGift(
-  giftName,
-  points
-){
-
-  console.log(
-    "TikTok gift:",
-    giftName,
-    points
-  );
-
-
-  sendGift(points);
-
-}
-
-
-/* GİFT XƏRİTƏSİ */
-
-const tiktokGifts = {
-
-  rose:{
-    name:"Gül",
-    points:1,
-    image:"images/rose.png"
-  },
-
-  perfume:{
-    name:"Parfüm",
-    points:10,
-    image:"images/perfume.png"
-  },
-
-  crown:{
-    name:"Tac",
-    points:100,
-    image:"images/crown.png"
-  },
-
-  hat:{
-    name:"Şapka",
-    points:99,
-    image:"images/hat.png"
-  }
-
-};
+updateScreen();
 
 </script>
 
