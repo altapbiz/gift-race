@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TikTok Gift Race</title>
+
+<title>GIFT RACE</title>
 
 <style>
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
   width:100%;
   height:100%;
   overflow:hidden;
+  background:#050507;
+  color:#fff;
   font-family:Arial,sans-serif;
-  background:#050509;
-  color:white;
 }
 
 body{
@@ -29,42 +29,38 @@ body{
 
 .game{
   width:100%;
-  max-width:700px;
+  max-width:760px;
   height:100vh;
   height:100dvh;
-  background:
-    radial-gradient(circle at 50% 0%,#20202b 0%,#09090e 45%,#030305 100%);
   display:flex;
   flex-direction:column;
-  overflow:hidden;
+  background:#08080d;
 }
 
 /* HEADER */
 
 .header{
-  height:72px;
-  min-height:72px;
+  height:70px;
+  min-height:70px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 15px;
-  border-bottom:1px solid #292936;
-  background:rgba(10,10,16,.96);
+  background:#101016;
+  border-bottom:1px solid #292933;
 }
 
 .logo{
-  font-size:21px;
+  font-size:22px;
   font-weight:900;
-  letter-spacing:1px;
 }
 
 .live{
   background:#ff1744;
-  padding:7px 13px;
+  padding:8px 14px;
   border-radius:20px;
   font-size:13px;
   font-weight:900;
-  box-shadow:0 0 15px rgba(255,23,68,.45);
 }
 
 .score{
@@ -73,130 +69,161 @@ body{
 
 .score small{
   display:block;
-  color:#999;
   font-size:10px;
+  color:#999;
 }
 
 .score strong{
-  font-size:20px;
+  font-size:23px;
 }
+
 
 /* RACE */
 
 .race{
-  position:relative;
   flex:1;
   min-height:0;
-  margin:8px 10px;
+  margin:8px;
+  border:2px solid #292933;
   border-radius:15px;
   overflow:hidden;
-  border:2px solid #292934;
-  background:
-    linear-gradient(
-      90deg,
-      #101015 0%,
-      #17171e 50%,
-      #101015 100%
-    );
+  position:relative;
+  background:#111117;
 }
-
-/* FINISH */
 
 .finish{
   position:absolute;
-  right:18px;
+  right:15px;
   top:0;
   bottom:0;
-  width:5px;
-  z-index:3;
-  background:repeating-linear-gradient(
+  width:6px;
+  z-index:10;
+
+  background:
+  repeating-linear-gradient(
     to bottom,
-    white 0 12px,
-    #111 12px 24px
+    #fff 0px,
+    #fff 12px,
+    #111 12px,
+    #111 24px
   );
-  opacity:.9;
 }
 
-/* LANES */
+
+/* LANE */
 
 .lane{
   height:20%;
   position:relative;
-  border-bottom:1px dashed #393943;
+  border-bottom:1px dashed #3b3b45;
 }
 
 .lane:last-child{
   border-bottom:none;
 }
 
+
 /* COUNTRY */
 
 .country{
   position:absolute;
-  left:8px;
-  top:7px;
-  z-index:4;
-  background:rgba(0,0,0,.65);
-  border-radius:7px;
-  padding:3px 6px;
+  left:7px;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:105px;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  padding:6px 7px;
+
+  background:rgba(0,0,0,.75);
+  border:1px solid #393943;
+  border-radius:9px;
+
+  z-index:8;
+}
+
+.flag{
+  font-size:29px;
+  line-height:1;
+  flex-shrink:0;
+}
+
+.country-name{
   font-size:11px;
   font-weight:900;
-  border:1px solid #383842;
+  white-space:nowrap;
 }
+
 
 /* CAR */
 
 .car{
   position:absolute;
-  left:12px;
+  left:125px;
   top:50%;
   transform:translateY(-50%);
-  width:78px;
-  height:38px;
-  transition:left .45s cubic-bezier(.2,.8,.2,1);
+  width:82px;
+  height:40px;
+  transition:left .45s ease;
   z-index:5;
 }
 
 .car-body{
   position:absolute;
-  width:62px;
-  height:23px;
+  width:66px;
+  height:24px;
   left:8px;
   top:8px;
-  border-radius:7px 12px 8px 8px;
-  background:linear-gradient(180deg,#efefef,#7c7c85);
-  border:2px solid #333;
+
+  border-radius:7px 13px 8px 8px;
+
+  background:linear-gradient(
+    180deg,
+    #eee,
+    #777
+  );
+
+  border:2px solid #292929;
 }
 
 .car-top{
   position:absolute;
-  width:31px;
-  height:17px;
-  left:19px;
+  width:34px;
+  height:18px;
+  left:21px;
   top:0;
+
   border-radius:9px 10px 2px 2px;
-  background:#85858d;
-  border:2px solid #333;
+
+  background:#777;
+  border:2px solid #292929;
 }
 
 .window{
   position:absolute;
-  width:22px;
+  width:24px;
   height:10px;
-  left:23px;
+  left:3px;
   top:3px;
-  background:#111722;
+
+  background:#101722;
   border-radius:4px;
 }
 
 .wheel{
   position:absolute;
-  width:13px;
-  height:13px;
-  background:#080808;
+  width:14px;
+  height:14px;
+
+  bottom:0;
+
+  background:#050505;
   border:2px solid #555;
   border-radius:50%;
-  bottom:0;
 }
 
 .wheel.one{
@@ -204,59 +231,76 @@ body{
 }
 
 .wheel.two{
-  right:8px;
+  right:7px;
 }
 
-.car.red .car-body{
-  background:linear-gradient(180deg,#ff4c65,#8d0016);
+
+/* CAR COLORS */
+
+.red .car-body{
+  background:linear-gradient(180deg,#ff536b,#900017);
 }
 
-.car.blue .car-body{
-  background:linear-gradient(180deg,#4ea6ff,#064d9f);
+.blue .car-body{
+  background:linear-gradient(180deg,#52aaff,#07509d);
 }
 
-.car.green .car-body{
-  background:linear-gradient(180deg,#52e58b,#087a3c);
+.green .car-body{
+  background:linear-gradient(180deg,#4ee58a,#08743b);
 }
 
-.car.yellow .car-body{
-  background:linear-gradient(180deg,#ffe56b,#c39100);
+.yellow .car-body{
+  background:linear-gradient(180deg,#ffe86d,#b68700);
 }
 
-.car.purple .car-body{
-  background:linear-gradient(180deg,#c679ff,#67219b);
+.purple .car-body{
+  background:linear-gradient(180deg,#c875ff,#66229a);
 }
 
-/* PLAYER */
+
+/* PLAYER NAME */
 
 .player-name{
   position:absolute;
-  left:92px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:11px;
-  color:#aaa;
-  font-weight:700;
-  z-index:2;
+
+  left:220px;
+  top:9px;
+
+  font-size:10px;
+  font-weight:800;
+
+  color:#8e8e98;
+
+  z-index:3;
 }
+
 
 /* BOTTOM */
 
 .bottom{
-  height:205px;
-  min-height:205px;
-  padding:10px 10px 12px;
+  height:225px;
+  min-height:225px;
+
+  padding:9px 9px 11px;
+
   background:#09090e;
-  border-top:1px solid #292936;
+
+  border-top:1px solid #292933;
 }
 
 .gift-title{
   text-align:center;
-  font-size:12px;
-  color:#999;
+
+  font-size:14px;
+  font-weight:900;
+
+  color:#fff;
+
   margin-bottom:8px;
-  font-weight:700;
 }
+
+
+/* GIFTS */
 
 .gifts{
   display:grid;
@@ -265,18 +309,27 @@ body{
 }
 
 .gift{
-  height:112px;
-  border-radius:13px;
-  border:1px solid #30303b;
-  background:linear-gradient(180deg,#171720,#0e0e14);
+  height:125px;
+
+  border-radius:14px;
+
+  border:1px solid #343440;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1a1a24,
+      #0d0d13
+    );
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  position:relative;
-  overflow:hidden;
+
   cursor:pointer;
-  user-select:none;
+
+  position:relative;
 }
 
 .gift:active{
@@ -284,61 +337,83 @@ body{
 }
 
 .gift img{
-  width:55px;
-  height:55px;
+  width:62px;
+  height:62px;
+
   object-fit:contain;
-  display:block;
-  margin-bottom:7px;
+
+  margin-bottom:5px;
 }
 
 .gift-name{
-  font-size:11px;
+  font-size:13px;
   font-weight:900;
 }
 
 .gift-points{
-  margin-top:4px;
-  font-size:10px;
-  color:#aaa;
+  margin-top:5px;
+
+  font-size:14px;
+  font-weight:900;
+
+  color:#ffd43b;
 }
+
+
+/* BUTTONS */
 
 .test{
   width:100%;
-  height:39px;
-  margin-top:8px;
+  height:36px;
+
+  margin-top:7px;
+
   border:0;
-  border-radius:10px;
-  background:#242431;
+  border-radius:9px;
+
+  background:#282833;
+
   color:#fff;
+
   font-size:12px;
   font-weight:900;
 }
 
 .reset{
-  background:#15151d;
+  background:#15151c;
   border:1px solid #30303a;
 }
+
 
 /* WINNER */
 
 .winner{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.78);
+
+  background:rgba(0,0,0,.8);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   z-index:100;
 }
 
 .winner-box{
   width:85%;
   max-width:350px;
-  background:#12121a;
-  border:1px solid #444452;
-  border-radius:20px;
+
   padding:25px;
+
   text-align:center;
+
+  background:#14141c;
+
+  border:1px solid #454552;
+
+  border-radius:20px;
 }
 
 .winner-box h1{
@@ -354,316 +429,580 @@ body{
 .winner-box button{
   width:100%;
   height:45px;
+
   border:0;
   border-radius:10px;
+
   background:#fff;
   color:#000;
+
   font-weight:900;
 }
 
-/* SMALL SCREEN */
 
-@media(max-height:650px){
+/* SMALL PHONE */
 
-  .header{
-    height:60px;
-    min-height:60px;
+@media(max-width:380px){
+
+  .country{
+    width:98px;
   }
 
-  .bottom{
-    height:175px;
-    min-height:175px;
+  .flag{
+    font-size:25px;
   }
 
-  .gift{
-    height:88px;
-  }
-
-  .gift img{
-    width:42px;
-    height:42px;
-  }
-
-  .test{
-    height:32px;
-    margin-top:5px;
-  }
-}
-
-@media(max-width:360px){
-
-  .gift{
-    height:100px;
-  }
-
-  .gift img{
-    width:45px;
-    height:45px;
-  }
-
-  .gift-name{
+  .country-name{
     font-size:10px;
   }
+
+  .car{
+    left:112px;
+  }
+
+  .player-name{
+    left:205px;
+  }
+
+  .gift{
+    height:115px;
+  }
+
+  .gift img{
+    width:55px;
+    height:55px;
+  }
+
+  .gift-points{
+    font-size:13px;
+  }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="game">
 
-  <div class="header">
-    <div>
-      <div class="logo">GIFT RACE</div>
-    </div>
 
-    <div class="live">● LIVE</div>
+<!-- HEADER -->
 
-    <div class="score">
-      <small>ÜMUMİ XAL</small>
-      <strong id="totalScore">0</strong>
-    </div>
+<div class="header">
+
+  <div class="logo">
+    GIFT RACE
   </div>
 
-
-  <div class="race">
-
-    <div class="finish"></div>
-
-    <!-- AZERBAIJAN -->
-    <div class="lane">
-      <div class="country">🇦🇿 AZ</div>
-      <div class="player-name" id="name0">AZERBAIJAN</div>
-
-      <div class="car red" id="car0">
-        <div class="car-top">
-          <div class="window"></div>
-        </div>
-        <div class="car-body"></div>
-        <div class="wheel one"></div>
-        <div class="wheel two"></div>
-      </div>
-    </div>
-
-
-    <!-- TURKEY -->
-    <div class="lane">
-      <div class="country">🇹🇷 TR</div>
-      <div class="player-name" id="name1">TURKEY</div>
-
-      <div class="car blue" id="car1">
-        <div class="car-top">
-          <div class="window"></div>
-        </div>
-        <div class="car-body"></div>
-        <div class="wheel one"></div>
-        <div class="wheel two"></div>
-      </div>
-    </div>
-
-
-    <!-- GEORGIA -->
-    <div class="lane">
-      <div class="country">🇬🇪 GE</div>
-      <div class="player-name" id="name2">GEORGIA</div>
-
-      <div class="car green" id="car2">
-        <div class="car-top">
-          <div class="window"></div>
-        </div>
-        <div class="car-body"></div>
-        <div class="wheel one"></div>
-        <div class="wheel two"></div>
-      </div>
-    </div>
-
-
-    <!-- RUSSIA -->
-    <div class="lane">
-      <div class="country">🇷🇺 RU</div>
-      <div class="player-name" id="name3">RUSSIA</div>
-
-      <div class="car yellow" id="car3">
-        <div class="car-top">
-          <div class="window"></div>
-        </div>
-        <div class="car-body"></div>
-        <div class="wheel one"></div>
-        <div class="wheel two"></div>
-      </div>
-    </div>
-
-
-    <!-- UKRAINE -->
-    <div class="lane">
-      <div class="country">🇺🇦 UA</div>
-      <div class="player-name" id="name4">UKRAINE</div>
-
-      <div class="car purple" id="car4">
-        <div class="car-top">
-          <div class="window"></div>
-        </div>
-        <div class="car-body"></div>
-        <div class="wheel one"></div>
-        <div class="wheel two"></div>
-      </div>
-    </div>
-
+  <div class="live">
+    ● LIVE
   </div>
 
+  <div class="score">
 
-  <div class="bottom">
+    <small>ÜMUMİ XAL</small>
 
-    <div class="gift-title">
-      TIKTOK HƏDİYYƏLƏRİ
-    </div>
-
-    <div class="gifts">
-
-      <!-- GÜL -->
-      <div class="gift" onclick="sendGift(1)">
-        <img src="images/rose.png" alt="Gül">
-        <div class="gift-name">Gül</div>
-        <div class="gift-points">1 xal</div>
-      </div>
-
-
-      <!-- PARFÜM -->
-      <div class="gift" onclick="sendGift(10)">
-        <img src="images/perfume.png" alt="Parfüm">
-        <div class="gift-name">Parfüm</div>
-        <div class="gift-points">10 xal</div>
-      </div>
-
-
-      <!-- TAC -->
-      <div class="gift" onclick="sendGift(100)">
-        <img src="images/crown.png" alt="Tac">
-        <div class="gift-name">Tac</div>
-        <div class="gift-points">100 xal</div>
-      </div>
-
-
-      <!-- ŞAPKA -->
-      <div class="gift" onclick="sendGift(99)">
-        <img src="images/hat.png" alt="Şapka">
-        <div class="gift-name">Şapka</div>
-        <div class="gift-points">99 xal</div>
-      </div>
-
-    </div>
-
-
-    <button class="test" onclick="randomGift()">
-      TEST HƏDİYYƏ GÖNDƏR
-    </button>
-
-    <button class="test reset" onclick="resetGame()">
-      SIFIRLA
-    </button>
+    <strong id="totalScore">
+      0
+    </strong>
 
   </div>
 
 </div>
 
 
-<div class="winner" id="winner">
+
+<!-- RACE -->
+
+<div class="race">
+
+  <div class="finish"></div>
+
+
+  <!-- AZERBAIJAN -->
+
+  <div class="lane">
+
+    <div class="country">
+
+      <div class="flag">
+        🇦🇿
+      </div>
+
+      <div class="country-name">
+        AZERBAIJAN
+      </div>
+
+    </div>
+
+
+    <div
+      class="player-name"
+      id="name0">
+      AZERBAIJAN
+    </div>
+
+
+    <div
+      class="car red"
+      id="car0">
+
+      <div class="car-top">
+        <div class="window"></div>
+      </div>
+
+      <div class="car-body"></div>
+
+      <div class="wheel one"></div>
+      <div class="wheel two"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- TURKEY -->
+
+  <div class="lane">
+
+    <div class="country">
+
+      <div class="flag">
+        🇹🇷
+      </div>
+
+      <div class="country-name">
+        TURKEY
+      </div>
+
+    </div>
+
+
+    <div
+      class="player-name"
+      id="name1">
+      TURKEY
+    </div>
+
+
+    <div
+      class="car blue"
+      id="car1">
+
+      <div class="car-top">
+        <div class="window"></div>
+      </div>
+
+      <div class="car-body"></div>
+
+      <div class="wheel one"></div>
+      <div class="wheel two"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- GEORGIA -->
+
+  <div class="lane">
+
+    <div class="country">
+
+      <div class="flag">
+        🇬🇪
+      </div>
+
+      <div class="country-name">
+        GEORGIA
+      </div>
+
+    </div>
+
+
+    <div
+      class="player-name"
+      id="name2">
+      GEORGIA
+    </div>
+
+
+    <div
+      class="car green"
+      id="car2">
+
+      <div class="car-top">
+        <div class="window"></div>
+      </div>
+
+      <div class="car-body"></div>
+
+      <div class="wheel one"></div>
+      <div class="wheel two"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- RUSSIA -->
+
+  <div class="lane">
+
+    <div class="country">
+
+      <div class="flag">
+        🇷🇺
+      </div>
+
+      <div class="country-name">
+        RUSSIA
+      </div>
+
+    </div>
+
+
+    <div
+      class="player-name"
+      id="name3">
+      RUSSIA
+    </div>
+
+
+    <div
+      class="car yellow"
+      id="car3">
+
+      <div class="car-top">
+        <div class="window"></div>
+      </div>
+
+      <div class="car-body"></div>
+
+      <div class="wheel one"></div>
+      <div class="wheel two"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- UKRAINE -->
+
+  <div class="lane">
+
+    <div class="country">
+
+      <div class="flag">
+        🇺🇦
+      </div>
+
+      <div class="country-name">
+        UKRAINE
+      </div>
+
+    </div>
+
+
+    <div
+      class="player-name"
+      id="name4">
+      UKRAINE
+    </div>
+
+
+    <div
+      class="car purple"
+      id="car4">
+
+      <div class="car-top">
+        <div class="window"></div>
+      </div>
+
+      <div class="car-body"></div>
+
+      <div class="wheel one"></div>
+      <div class="wheel two"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- GIFTS -->
+
+<div class="bottom">
+
+  <div class="gift-title">
+    TIKTOK HƏDİYYƏLƏRİ
+  </div>
+
+
+  <div class="gifts">
+
+
+    <!-- GÜL -->
+
+    <div
+      class="gift"
+      onclick="sendGift(1)">
+
+      <img
+        src="images/rose.png"
+        alt="Gül">
+
+      <div class="gift-name">
+        Gül
+      </div>
+
+      <div class="gift-points">
+        1 XAL
+      </div>
+
+    </div>
+
+
+
+    <!-- PARFÜM -->
+
+    <div
+      class="gift"
+      onclick="sendGift(10)">
+
+      <img
+        src="images/perfume.png"
+        alt="Parfüm">
+
+      <div class="gift-name">
+        Parfüm
+      </div>
+
+      <div class="gift-points">
+        10 XAL
+      </div>
+
+    </div>
+
+
+
+    <!-- TAC -->
+
+    <div
+      class="gift"
+      onclick="sendGift(100)">
+
+      <img
+        src="images/crown.png"
+        alt="Tac">
+
+      <div class="gift-name">
+        Tac
+      </div>
+
+      <div class="gift-points">
+        100 XAL
+      </div>
+
+    </div>
+
+
+
+    <!-- ŞAPKA -->
+
+    <div
+      class="gift"
+      onclick="sendGift(99)">
+
+      <img
+        src="images/hat.png"
+        alt="Şapka">
+
+      <div class="gift-name">
+        Şapka
+      </div>
+
+      <div class="gift-points">
+        99 XAL
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="test"
+    onclick="randomGift()">
+
+    TEST HƏDİYYƏ GÖNDƏR
+
+  </button>
+
+
+  <button
+    class="test reset"
+    onclick="resetGame()">
+
+    SIFIRLA
+
+  </button>
+
+</div>
+
+</div>
+
+
+
+<!-- WINNER -->
+
+<div
+  class="winner"
+  id="winner">
+
   <div class="winner-box">
-    <h1>🏁 QALİB!</h1>
+
+    <h1>
+      🏁 QALİB!
+    </h1>
+
     <p id="winnerText"></p>
-    <button onclick="closeWinner()">DAVAM ET</button>
+
+    <button onclick="closeWinner()">
+      DAVAM ET
+    </button>
+
   </div>
+
 </div>
+
 
 
 <script>
 
 const players = [
+
   {
     name:"AZERBAIJAN",
     points:0,
     position:12
   },
+
   {
     name:"TURKEY",
     points:0,
     position:12
   },
+
   {
     name:"GEORGIA",
     points:0,
     position:12
   },
+
   {
     name:"RUSSIA",
     points:0,
     position:12
   },
+
   {
     name:"UKRAINE",
     points:0,
     position:12
   }
+
 ];
 
+
 let totalScore = 0;
+
 let gameFinished = false;
 
 
-/* HƏDİYYƏ GƏLƏNDƏ */
+/* HƏDİYYƏ */
 
 function sendGift(points){
 
-  if(gameFinished) return;
+  if(gameFinished){
+    return;
+  }
 
-  /*
-    Hazırda test üçün təsadüfi maşın seçilir.
-
-    Daha sonra TikTok LIVE bağlantısı əlavə ediləndə
-    burada hansı istifadəçiyə hədiyyə gəlibsə,
-    həmin oyunçunun maşını seçiləcək.
-  */
 
   const playerIndex =
-    Math.floor(Math.random() * players.length);
+    Math.floor(
+      Math.random() *
+      players.length
+    );
+
 
   players[playerIndex].points += points;
 
+
   totalScore += points;
 
-  document.getElementById("totalScore").innerText =
+
+  document.getElementById(
+    "totalScore"
+  ).innerText =
     totalScore;
 
-  moveCar(playerIndex,points);
+
+  moveCar(
+    playerIndex,
+    points
+  );
+
 
   checkWinner();
+
 }
 
 
-/* MAŞINI İRƏLİ APAR */
+/* MAŞIN */
 
-function moveCar(playerIndex,points){
+function moveCar(
+  playerIndex,
+  points
+){
 
-  const player = players[playerIndex];
+  const player =
+    players[playerIndex];
 
-  /*
-    Xal nə qədər çoxdursa,
-    maşın bir o qədər çox irəliləyir.
-  */
 
-  const movement = points * 0.55;
+  const movement =
+    points * 0.55;
 
-  player.position += movement;
 
-  if(player.position > 83){
+  player.position +=
+    movement;
+
+
+  if(
+    player.position > 83
+  ){
+
     player.position = 83;
+
   }
 
+
   const car =
-    document.getElementById("car"+playerIndex);
+    document.getElementById(
+      "car" + playerIndex
+    );
+
 
   car.style.left =
     player.position + "%";
+
 }
 
 
@@ -678,10 +1017,18 @@ function randomGift(){
     99
   ];
 
+
   const points =
-    gifts[Math.floor(Math.random()*gifts.length)];
+    gifts[
+      Math.floor(
+        Math.random() *
+        gifts.length
+      )
+    ];
+
 
   sendGift(points);
+
 }
 
 
@@ -689,95 +1036,128 @@ function randomGift(){
 
 function checkWinner(){
 
-  for(let i=0;i<players.length;i++){
+  for(
+    let i=0;
+    i<players.length;
+    i++
+  ){
 
-    if(players[i].position >= 83){
+    if(
+      players[i].position >= 83
+    ){
 
       gameFinished = true;
 
-      document.getElementById("winnerText").innerText =
+
+      document.getElementById(
+        "winnerText"
+      ).innerText =
         players[i].name +
         " qalib oldu!";
 
-      document.getElementById("winner")
-        .style.display="flex";
+
+      document.getElementById(
+        "winner"
+      ).style.display =
+        "flex";
+
 
       break;
+
     }
+
   }
+
 }
 
 
-/* DAVAM ET */
+/* DAVAM */
 
 function closeWinner(){
 
-  document.getElementById("winner")
-    .style.display="none";
+  document.getElementById(
+    "winner"
+  ).style.display =
+    "none";
+
 
   resetGame();
+
 }
 
 
-/* SIFIRLA */
+/* RESET */
 
 function resetGame(){
 
   totalScore = 0;
+
   gameFinished = false;
 
-  document.getElementById("totalScore")
-    .innerText="0";
 
-  players.forEach((player,index)=>{
+  document.getElementById(
+    "totalScore"
+  ).innerText =
+    "0";
 
-    player.points=0;
-    player.position=12;
 
-    document.getElementById("car"+index)
-      .style.left="12%";
-  });
+  players.forEach(
+    (player,index)=>{
 
-  document.getElementById("winner")
-    .style.display="none";
+      player.points = 0;
+
+      player.position = 12;
+
+
+      document.getElementById(
+        "car" + index
+      ).style.left =
+        "12%";
+
+    }
+  );
+
+
+  document.getElementById(
+    "winner"
+  ).style.display =
+    "none";
+
 }
 
 
 /*
-====================================================
-TIKTOK LIVE GIFT SİSTEMİ ÜÇÜN ƏSAS FUNKSİYA
-====================================================
+=========================================
+TIKTOK HƏDİYYƏ SİSTEMİ
+=========================================
 
-TikTok-dan real hədiyyə məlumatı gələndə
-server bu funksiyanı çağırmalıdır.
+Gül     = 1 xal
+Parfüm  = 10 xal
+Tac     = 100 xal
+Şapka   = 99 xal
 
-Məsələn:
-
-receiveTikTokGift("rose",1);
-receiveTikTokGift("perfume",10);
-receiveTikTokGift("crown",100);
-receiveTikTokGift("hat",99);
-
+Real TikTok bağlantısı əlavə olunanda
+server bu funksiyanı çağıracaq.
 */
 
-function receiveTikTokGift(giftName,points){
+function receiveTikTokGift(
+  giftName,
+  points
+){
 
   console.log(
-    "TikTok hədiyyəsi:",
+    "TikTok gift:",
     giftName,
-    "Xal:",
     points
   );
 
+
   sendGift(points);
+
 }
 
 
-/*
-====================================================
-HƏDİYYƏ XƏRİTƏSİ
-====================================================
-*/
+/* GİFT XƏRİTƏSİ */
 
 const tiktokGifts = {
 
