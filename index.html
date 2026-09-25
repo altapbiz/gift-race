@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-<title>Украина 🇺🇦 vs Россия 🇷🇺</title>
+<title>Украина VS Россия</title>
 
 <style>
 *{
@@ -13,149 +13,127 @@
     padding:0;
 }
 
-body{
-    background:
-        radial-gradient(circle at top,#202020 0%,#090909 45%,#000 100%);
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
-.container{
-    width:100%;
-    max-width:900px;
-    margin:auto;
-    padding:18px;
+body{
+    background:
+    radial-gradient(circle at 50% 20%,#252525 0%,#0d0d0d 45%,#000 100%);
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+.app{
+    width:100%;
+    max-width:850px;
+    height:100vh;
+    max-height:760px;
+    padding:10px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:9px;
+}
+
+/* BAŞLIQ */
 
 .title{
     text-align:center;
-    font-size:30px;
+    font-size:clamp(18px,4vw,30px);
     font-weight:900;
-    margin-bottom:8px;
-    letter-spacing:1px;
+    line-height:1.1;
 }
 
 .subtitle{
     text-align:center;
-    color:#aaa;
-    font-size:14px;
-    margin-bottom:22px;
+    color:#999;
+    font-size:clamp(10px,2.5vw,14px);
 }
 
-.scoreboard{
+/* SCORE */
+
+.scores{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
+    gap:10px;
 }
 
 .team{
-    position:relative;
-    background:rgba(255,255,255,.06);
+    background:rgba(255,255,255,.055);
     border:1px solid rgba(255,255,255,.12);
-    border-radius:25px;
-    padding:22px 15px;
+    border-radius:18px;
+    padding:9px;
     text-align:center;
-    overflow:hidden;
 }
 
-.team-name{
-    font-size:19px;
-    font-weight:900;
-    margin-top:12px;
-}
-
-.score{
-    font-size:40px;
-    font-weight:900;
-    margin-top:8px;
-}
-
-.target{
-    color:#888;
-    font-size:13px;
-}
-
-/* BAYRAQ İKONLARI */
-
-.flag-icon{
-    width:92px;
-    height:92px;
-    margin:auto;
+.flag{
+    width:clamp(52px,13vw,78px);
+    height:clamp(52px,13vw,78px);
     border-radius:50%;
-    overflow:hidden;
+    margin:0 auto 5px;
+    border:3px solid rgba(255,255,255,.85);
+    box-shadow:0 0 15px rgba(255,255,255,.15);
     position:relative;
-    border:4px solid rgba(255,255,255,.8);
-    box-shadow:
-        0 0 20px rgba(255,255,255,.18),
-        inset 0 0 15px rgba(0,0,0,.35);
+    overflow:hidden;
 }
 
-/* Ukrayna */
-.flag-ukraine{
-    background:
-        linear-gradient(
-            to bottom,
-            #0057b8 0%,
-            #0057b8 50%,
-            #ffd700 50%,
-            #ffd700 100%
-        );
-}
-
-/* Rusiya */
-.flag-russia{
-    background:
-        linear-gradient(
-            to bottom,
-            #fff 0%,
-            #fff 33.33%,
-            #0039a6 33.33%,
-            #0039a6 66.66%,
-            #d52b1e 66.66%,
-            #d52b1e 100%
-        );
-}
-
-/* Parıltı */
-.flag-icon::after{
+.flag:after{
     content:"";
     position:absolute;
-    top:0;
     left:15%;
-    width:35%;
+    top:0;
+    width:30%;
     height:100%;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.35),
-        transparent
-    );
+    background:rgba(255,255,255,.25);
     transform:skewX(-20deg);
-    opacity:.5;
 }
 
-/* XAL GƏLƏNDƏ YANIB-SÖNMƏ */
+/* UKRAINE */
 
-.flag-icon.flash{
-    animation:flagFlash .7s ease-in-out 3;
+.ukraine-flag{
+    background:linear-gradient(
+        to bottom,
+        #0057b8 0 50%,
+        #ffd700 50% 100%
+    );
 }
 
-@keyframes flagFlash{
+/* RUSSIA */
+
+.russia-flag{
+    background:linear-gradient(
+        to bottom,
+        #fff 0 33.33%,
+        #0039a6 33.33% 66.66%,
+        #d52b1e 66.66% 100%
+    );
+}
+
+/* BAYRAQ YANIB-SÖNMƏ */
+
+.flash{
+    animation:flash .7s ease-in-out 3;
+}
+
+@keyframes flash{
     0%{
         transform:scale(1);
         filter:brightness(1);
-        box-shadow:
-            0 0 20px rgba(255,255,255,.2);
+        box-shadow:0 0 15px rgba(255,255,255,.2);
     }
 
     25%{
         transform:scale(1.18);
-        filter:brightness(2);
+        filter:brightness(2.2);
         box-shadow:
-            0 0 35px #fff,
-            0 0 70px rgba(255,255,255,.8);
+        0 0 25px #fff,
+        0 0 55px rgba(255,255,255,.9);
     }
 
     50%{
@@ -165,10 +143,10 @@ body{
 
     75%{
         transform:scale(1.18);
-        filter:brightness(2);
+        filter:brightness(2.2);
         box-shadow:
-            0 0 35px #fff,
-            0 0 70px rgba(255,255,255,.8);
+        0 0 25px #fff,
+        0 0 55px rgba(255,255,255,.9);
     }
 
     100%{
@@ -177,225 +155,225 @@ body{
     }
 }
 
-/* PROGRESS */
+.name{
+    font-size:clamp(12px,3vw,17px);
+    font-weight:900;
+}
+
+.score{
+    font-size:clamp(24px,7vw,42px);
+    font-weight:900;
+    line-height:1.05;
+    margin:3px 0;
+}
+
+.target{
+    color:#777;
+    font-size:10px;
+}
 
 .progress{
-    width:100%;
-    height:12px;
-    background:#202020;
-    border-radius:20px;
-    margin-top:15px;
+    height:7px;
+    background:#222;
+    border-radius:10px;
     overflow:hidden;
+    margin-top:5px;
 }
 
 .progress-bar{
-    width:0%;
     height:100%;
-    border-radius:20px;
+    width:0%;
     transition:width .5s ease;
 }
 
-.progress-ukraine{
+.ukraine-progress{
     background:linear-gradient(90deg,#0057b8,#ffd700);
 }
 
-.progress-russia{
+.russia-progress{
     background:linear-gradient(90deg,#fff,#0039a6,#d52b1e);
 }
 
 /* RACE */
 
 .race{
-    margin-top:25px;
-    background:rgba(255,255,255,.04);
+    background:rgba(255,255,255,.045);
     border:1px solid rgba(255,255,255,.1);
-    border-radius:25px;
-    padding:20px;
+    border-radius:18px;
+    padding:9px;
 }
 
 .race-title{
     text-align:center;
-    font-size:20px;
+    font-size:clamp(13px,3vw,18px);
     font-weight:900;
-    margin-bottom:20px;
+    margin-bottom:6px;
 }
 
 .lane{
-    position:relative;
-    height:100px;
-    margin-bottom:18px;
+    height:58px;
     background:#111;
-    border-radius:18px;
-    border:1px solid #292929;
+    border-radius:12px;
+    position:relative;
     overflow:hidden;
+    margin-top:6px;
+    border:1px solid #292929;
 }
 
-.lane:last-child{
-    margin-bottom:0;
-}
-
-.lane-label{
+.lane-name{
     position:absolute;
-    top:10px;
-    left:15px;
+    top:5px;
+    left:9px;
     z-index:5;
-    font-size:14px;
+    font-size:10px;
     font-weight:900;
 }
 
 .finish{
     position:absolute;
-    right:12px;
+    right:7px;
     top:0;
+    width:4px;
     height:100%;
-    width:5px;
     background:
-        repeating-linear-gradient(
-            to bottom,
-            #fff 0,
-            #fff 10px,
-            #111 10px,
-            #111 20px
-        );
+    repeating-linear-gradient(
+        to bottom,
+        #fff 0 7px,
+        #111 7px 14px
+    );
 }
+
+/* MAŞIN */
 
 .car{
     position:absolute;
-    left:10px;
-    bottom:15px;
-    width:80px;
-    height:38px;
-    border-radius:12px 18px 8px 8px;
-    transition:left .7s ease;
+    left:8px;
+    bottom:10px;
+    width:57px;
+    height:25px;
+    border-radius:8px 13px 6px 6px;
+    transition:left .6s ease;
     z-index:3;
 }
 
-.car::before{
+.car:before{
     content:"";
     position:absolute;
-    width:35px;
-    height:20px;
-    left:23px;
-    top:-13px;
-    border-radius:8px 8px 2px 2px;
+    width:26px;
+    height:13px;
+    left:17px;
+    top:-9px;
+    border-radius:6px 6px 2px 2px;
     background:inherit;
 }
 
-.car::after{
+.car:after{
     content:"";
     position:absolute;
-    width:12px;
-    height:12px;
-    border-radius:50%;
+    width:9px;
+    height:9px;
     background:#050505;
-    left:10px;
-    bottom:-6px;
-    box-shadow:48px 0 0 #050505;
+    border-radius:50%;
+    left:7px;
+    bottom:-5px;
+    box-shadow:34px 0 0 #050505;
 }
 
-.car-ukraine{
+.ukraine-car{
     background:linear-gradient(135deg,#0057b8,#ffd700);
 }
 
-.car-russia{
+.russia-car{
     background:linear-gradient(135deg,#fff,#0039a6,#d52b1e);
 }
 
-/* GIFTS */
+/* HƏDİYYƏLƏR */
 
 .gifts{
-    margin-top:25px;
-}
-
-.gifts-title{
-    text-align:center;
-    font-size:20px;
-    font-weight:900;
-    margin-bottom:15px;
-}
-
-.gift-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
+    gap:10px;
 }
 
 .gift{
-    background:#111;
-    border:1px solid #292929;
-    border-radius:20px;
-    padding:20px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:15px;
+    padding:8px;
     text-align:center;
 }
 
 .gift-icon{
-    width:70px;
-    height:70px;
+    width:42px;
+    height:42px;
     margin:auto;
-    border-radius:20px;
+    border-radius:11px;
+    background:#1b1b1b;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:42px;
-    background:#1d1d1d;
+    font-size:25px;
 }
 
 .gift-name{
-    margin-top:10px;
+    font-size:11px;
     font-weight:900;
+    margin-top:4px;
 }
 
 .gift-team{
-    color:#aaa;
-    font-size:13px;
-    margin-top:5px;
+    color:#999;
+    font-size:9px;
 }
 
 /* TEST */
 
-.controls{
-    margin-top:25px;
+.buttons{
     display:grid;
-    gap:10px;
+    grid-template-columns:1fr 1fr 70px;
+    gap:6px;
 }
 
 button{
     border:0;
-    border-radius:14px;
-    padding:15px;
+    border-radius:11px;
+    padding:10px 5px;
     color:#fff;
-    font-size:15px;
+    font-size:10px;
     font-weight:900;
     cursor:pointer;
 }
 
-.btn-russia{
-    background:#9b1c1c;
+.russia-btn{
+    background:#8e2020;
 }
 
-.btn-ukraine{
+.ukraine-btn{
     background:#0758a8;
 }
 
-.btn-reset{
+.reset-btn{
     background:#333;
 }
 
-button:active{
-    transform:scale(.97);
+/* STATUS */
+
+.status{
+    text-align:center;
+    color:#777;
+    font-size:9px;
 }
 
 /* WINNER */
 
 .winner{
-    display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.9);
-    z-index:100;
+    display:none;
     align-items:center;
     justify-content:center;
-    text-align:center;
+    background:rgba(0,0,0,.92);
+    z-index:100;
     padding:20px;
 }
 
@@ -404,57 +382,70 @@ button:active{
 }
 
 .winner-box{
+    width:100%;
+    max-width:420px;
     background:#151515;
     border:1px solid #444;
-    border-radius:30px;
-    padding:40px 25px;
-    width:100%;
-    max-width:500px;
-    box-shadow:0 0 60px rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:30px 20px;
+    text-align:center;
 }
 
-.winner-title{
-    font-size:45px;
-    font-weight:900;
+.trophy{
+    font-size:55px;
 }
 
 .winner-name{
-    font-size:30px;
-    margin-top:15px;
+    font-size:25px;
+    font-weight:900;
+    margin-top:8px;
 }
 
 .winner-score{
-    color:#aaa;
-    margin-top:10px;
+    color:#999;
+    margin-top:6px;
 }
 
-/* RESPONSIVE */
+.new-game{
+    background:#333;
+    margin-top:18px;
+    width:100%;
+}
 
-@media(max-width:600px){
+/* ÇOX KİÇİK EKRANLAR */
 
-    .container{
-        padding:12px;
+@media(max-height:650px){
+
+    .app{
+        gap:5px;
+        padding:6px 10px;
     }
 
-    .title{
-        font-size:23px;
+    .team{
+        padding:6px;
     }
 
-    .flag-icon{
-        width:72px;
-        height:72px;
+    .flag{
+        width:45px;
+        height:45px;
     }
 
     .score{
-        font-size:30px;
+        font-size:25px;
     }
 
-    .team-name{
-        font-size:15px;
+    .lane{
+        height:48px;
     }
 
-    .race{
-        padding:12px;
+    .gift{
+        padding:5px;
+    }
+
+    .gift-icon{
+        width:34px;
+        height:34px;
+        font-size:20px;
     }
 }
 </style>
@@ -462,27 +453,27 @@ button:active{
 
 <body>
 
-<div class="container">
+<div class="app">
 
     <div class="title">
         🇺🇦 УКРАИНА VS РОССИЯ 🇷🇺
     </div>
 
     <div class="subtitle">
-        Первый до 500 000 очков побеждает
+        ПЕРВЫЙ ДО 500 000 ОЧКОВ ПОБЕЖДАЕТ
     </div>
 
-    <div class="scoreboard">
 
-        <!-- UKRAINE -->
+    <!-- XALLAR -->
+
+    <div class="scores">
 
         <div class="team">
 
             <div id="ukraineFlag"
-                 class="flag-icon flag-ukraine">
-            </div>
+                 class="flag ukraine-flag"></div>
 
-            <div class="team-name">
+            <div class="name">
                 УКРАИНА
             </div>
 
@@ -497,21 +488,19 @@ button:active{
 
             <div class="progress">
                 <div id="ukraineProgress"
-                     class="progress-bar progress-ukraine">
+                     class="progress-bar ukraine-progress">
                 </div>
             </div>
 
         </div>
 
-        <!-- RUSSIA -->
 
         <div class="team">
 
             <div id="russiaFlag"
-                 class="flag-icon flag-russia">
-            </div>
+                 class="flag russia-flag"></div>
 
-            <div class="team-name">
+            <div class="name">
                 РОССИЯ
             </div>
 
@@ -526,7 +515,7 @@ button:active{
 
             <div class="progress">
                 <div id="russiaProgress"
-                     class="progress-bar progress-russia">
+                     class="progress-bar russia-progress">
                 </div>
             </div>
 
@@ -535,7 +524,7 @@ button:active{
     </div>
 
 
-    <!-- RACE -->
+    <!-- YARIŞ -->
 
     <div class="race">
 
@@ -545,12 +534,12 @@ button:active{
 
         <div class="lane">
 
-            <div class="lane-label">
+            <div class="lane-name">
                 🇺🇦 УКРАИНА
             </div>
 
             <div id="ukraineCar"
-                 class="car car-ukraine">
+                 class="car ukraine-car">
             </div>
 
             <div class="finish"></div>
@@ -560,12 +549,12 @@ button:active{
 
         <div class="lane">
 
-            <div class="lane-label">
+            <div class="lane-name">
                 🇷🇺 РОССИЯ
             </div>
 
             <div id="russiaCar"
-                 class="car car-russia">
+                 class="car russia-car">
             </div>
 
             <div class="finish"></div>
@@ -575,47 +564,39 @@ button:active{
     </div>
 
 
-    <!-- GIFTS -->
+    <!-- HƏDİYYƏ -->
 
     <div class="gifts">
 
-        <div class="gifts-title">
-            🎁 ПОДАРКИ TIKTOK LIVE
-        </div>
+        <div class="gift">
 
-        <div class="gift-grid">
-
-            <div class="gift">
-
-                <div class="gift-icon">
-                    👑
-                </div>
-
-                <div class="gift-name">
-                    КОРОНА
-                </div>
-
-                <div class="gift-team">
-                    → РОССИЯ
-                </div>
-
+            <div class="gift-icon">
+                👑
             </div>
 
+            <div class="gift-name">
+                КОРОНА → РОССИЯ
+            </div>
 
-            <div class="gift">
+            <div class="gift-team">
+                ПОДАРОК = ОЧКИ
+            </div>
 
-                <div class="gift-icon">
-                    🧢
-                </div>
+        </div>
 
-                <div class="gift-name">
-                    ШАПКА
-                </div>
 
-                <div class="gift-team">
-                    → УКРАИНА
-                </div>
+        <div class="gift">
 
+            <div class="gift-icon">
+                🧢
+            </div>
+
+            <div class="gift-name">
+                ШАПКА → УКРАИНА
+            </div>
+
+            <div class="gift-team">
+                ПОДАРОК = ОЧКИ
             </div>
 
         </div>
@@ -623,28 +604,34 @@ button:active{
     </div>
 
 
-    <!-- TEST BUTTONS -->
+    <!-- TEST -->
 
-    <div class="controls">
+    <div class="buttons">
 
         <button
-            class="btn-russia"
+            class="russia-btn"
             onclick="testRussia()">
-            ТЕСТ: КОРОНА → РОССИЯ +100
+            👑 РОССИЯ +100
         </button>
 
         <button
-            class="btn-ukraine"
+            class="ukraine-btn"
             onclick="testUkraine()">
-            ТЕСТ: ШАПКА → УКРАИНА +100
+            🧢 УКРАИНА +100
         </button>
 
         <button
-            class="btn-reset"
+            class="reset-btn"
             onclick="resetGame()">
-            СБРОСИТЬ ИГРУ
+            СБРОС
         </button>
 
+    </div>
+
+
+    <div id="status"
+         class="status">
+        ● LIVE SYSTEM READY
     </div>
 
 </div>
@@ -657,7 +644,7 @@ button:active{
 
     <div class="winner-box">
 
-        <div class="winner-title">
+        <div class="trophy">
             🏆
         </div>
 
@@ -669,10 +656,8 @@ button:active{
              class="winner-score">
         </div>
 
-        <br>
-
         <button
-            class="btn-reset"
+            class="new-game"
             onclick="resetGame()">
             НОВАЯ ИГРА
         </button>
@@ -684,99 +669,79 @@ button:active{
 
 <script>
 
-/* =========================
-   GAME SETTINGS
-========================= */
-
 const MAX_SCORE = 500000;
 
 let ukraineScore = 0;
 let russiaScore = 0;
-
 let gameFinished = false;
 
 
-/* =========================
-   ELEMENTS
-========================= */
-
 const ukraineScoreEl =
-    document.getElementById("ukraineScore");
+document.getElementById("ukraineScore");
 
 const russiaScoreEl =
-    document.getElementById("russiaScore");
+document.getElementById("russiaScore");
 
-const ukraineProgressEl =
-    document.getElementById("ukraineProgress");
+const ukraineProgress =
+document.getElementById("ukraineProgress");
 
-const russiaProgressEl =
-    document.getElementById("russiaProgress");
+const russiaProgress =
+document.getElementById("russiaProgress");
 
 const ukraineCar =
-    document.getElementById("ukraineCar");
+document.getElementById("ukraineCar");
 
 const russiaCar =
-    document.getElementById("russiaCar");
+document.getElementById("russiaCar");
 
 const ukraineFlag =
-    document.getElementById("ukraineFlag");
+document.getElementById("ukraineFlag");
 
 const russiaFlag =
-    document.getElementById("russiaFlag");
+document.getElementById("russiaFlag");
 
 const winner =
-    document.getElementById("winner");
+document.getElementById("winner");
 
 const winnerName =
-    document.getElementById("winnerName");
+document.getElementById("winnerName");
 
 const winnerScore =
-    document.getElementById("winnerScore");
+document.getElementById("winnerScore");
+
+const statusEl =
+document.getElementById("status");
 
 
-/* =========================
-   FORMAT NUMBER
-========================= */
+function numberFormat(n){
 
-function formatNumber(number){
-
-    return Math.floor(number)
-        .toLocaleString("ru-RU");
+    return Math.floor(n)
+    .toLocaleString("ru-RU");
 
 }
 
 
-/* =========================
-   FLAG FLASH
-========================= */
+/* BAYRAQ EFFEKTİ */
 
 function flashFlag(team){
 
     const flag =
-        team === "ukraine"
-        ? ukraineFlag
-        : russiaFlag;
+    team === "ukraine"
+    ? ukraineFlag
+    : russiaFlag;
 
     flag.classList.remove("flash");
 
-    /* animasiyanı yenidən başlat */
     void flag.offsetWidth;
 
     flag.classList.add("flash");
 
-    setTimeout(() => {
-
-        flag.classList.remove("flash");
-
-    }, 2300);
 }
 
 
-/* =========================
-   ADD SCORE
-========================= */
+/* XAL ƏLAVƏ ET */
 
-function addScore(team, points, giftName = ""){
+function addScore(team, points){
 
     if(gameFinished) return;
 
@@ -785,6 +750,7 @@ function addScore(team, points, giftName = ""){
     if(!Number.isFinite(points) || points <= 0){
         return;
     }
+
 
     if(team === "ukraine"){
 
@@ -795,8 +761,8 @@ function addScore(team, points, giftName = ""){
         }
 
         flashFlag("ukraine");
-
     }
+
 
     if(team === "russia"){
 
@@ -807,8 +773,8 @@ function addScore(team, points, giftName = ""){
         }
 
         flashFlag("russia");
-
     }
+
 
     updateScreen();
 
@@ -817,74 +783,72 @@ function addScore(team, points, giftName = ""){
 }
 
 
-/* =========================
-   UPDATE SCREEN
-========================= */
+/* EKRANI YENİLƏ */
 
 function updateScreen(){
 
     ukraineScoreEl.textContent =
-        formatNumber(ukraineScore);
+    numberFormat(ukraineScore);
 
     russiaScoreEl.textContent =
-        formatNumber(russiaScore);
+    numberFormat(russiaScore);
 
 
-    let ukrainePercent =
-        (ukraineScore / MAX_SCORE) * 100;
+    const up =
+    Math.min(
+        100,
+        ukraineScore / MAX_SCORE * 100
+    );
 
-    let russiaPercent =
-        (russiaScore / MAX_SCORE) * 100;
-
-
-    if(ukrainePercent > 100){
-        ukrainePercent = 100;
-    }
-
-    if(russiaPercent > 100){
-        russiaPercent = 100;
-    }
+    const rp =
+    Math.min(
+        100,
+        russiaScore / MAX_SCORE * 100
+    );
 
 
-    ukraineProgressEl.style.width =
-        ukrainePercent + "%";
+    ukraineProgress.style.width =
+    up + "%";
 
-    russiaProgressEl.style.width =
-        russiaPercent + "%";
-
-
-    /*
-       Maşının hərəkəti
-    */
-
-    const laneWidth =
-        document.querySelector(".lane").clientWidth;
-
-    const carWidth = 80;
-
-    const maxMove =
-        laneWidth - carWidth - 25;
+    russiaProgress.style.width =
+    rp + "%";
 
 
-    ukraineCar.style.left =
-        Math.max(
-            10,
-            (maxMove * ukrainePercent / 100)
-        ) + "px";
-
-
-    russiaCar.style.left =
-        Math.max(
-            10,
-            (maxMove * russiaPercent / 100)
-        ) + "px";
+    moveCars(up,rp);
 
 }
 
 
-/* =========================
-   CHECK WINNER
-========================= */
+/* MAŞINLAR */
+
+function moveCars(up,rp){
+
+    const lanes =
+    document.querySelectorAll(".lane");
+
+    if(!lanes.length) return;
+
+    const width =
+    lanes[0].clientWidth;
+
+    const maxMove =
+    Math.max(
+        20,
+        width - 75
+    );
+
+
+    ukraineCar.style.left =
+    (8 + maxMove * up / 100) + "px";
+
+
+    russiaCar.style.left =
+    (8 + maxMove * rp / 100) + "px";
+
+}
+
+
+/* QALİB */
 
 function checkWinner(){
 
@@ -895,7 +859,6 @@ function checkWinner(){
             ukraineScore
         );
 
-        return;
     }
 
 
@@ -906,34 +869,27 @@ function checkWinner(){
             russiaScore
         );
 
-        return;
     }
 
 }
 
 
-/* =========================
-   FINISH GAME
-========================= */
-
-function finishGame(name, score){
+function finishGame(name,score){
 
     gameFinished = true;
 
     winnerName.textContent =
-        name + " ПОБЕДИЛА!";
+    name + " ПОБЕДИЛА!";
 
     winnerScore.textContent =
-        "Очки: " + formatNumber(score);
+    "Очки: " + numberFormat(score);
 
     winner.classList.add("show");
 
 }
 
 
-/* =========================
-   RESET
-========================= */
+/* RESET */
 
 function resetGame(){
 
@@ -949,16 +905,13 @@ function resetGame(){
 }
 
 
-/* =========================
-   TEST BUTTONS
-========================= */
+/* TEST */
 
 function testRussia(){
 
     addScore(
         "russia",
-        100,
-        "Корона"
+        100
     );
 
 }
@@ -968,42 +921,21 @@ function testUkraine(){
 
     addScore(
         "ukraine",
-        100,
-        "Шапка"
+        100
     );
 
 }
 
 
-/* =========================
-   TIKTOK GIFT HANDLER
-========================= */
+/* TIKTOK GIFT */
 
-/*
-   Serverdən belə məlumat gələndə:
+function receiveTikTokGift(gift,coins){
 
-   {
-      gift: "crown",
-      coins: 100
-   }
+    gift =
+    String(gift).toLowerCase();
 
-   Rusiya +100 alır.
-
-   {
-
-      gift: "hat",
-      coins: 500
-
-   }
-
-   Ukrayna +500 alır.
-*/
-
-function receiveTikTokGift(gift, coins){
-
-    gift = String(gift).toLowerCase();
-
-    coins = Number(coins);
+    coins =
+    Number(coins);
 
 
     if(gift === "crown" ||
@@ -1012,8 +944,7 @@ function receiveTikTokGift(gift, coins){
 
         addScore(
             "russia",
-            coins,
-            "Корона"
+            coins
         );
 
         return;
@@ -1026,8 +957,7 @@ function receiveTikTokGift(gift, coins){
 
         addScore(
             "ukraine",
-            coins,
-            "Шапка"
+            coins
         );
 
         return;
@@ -1036,37 +966,32 @@ function receiveTikTokGift(gift, coins){
 }
 
 
-/* =========================
-   LIVE SERVER CONNECTION
-========================= */
-
 /*
-   BURA Render serverinin linki
-   əlavə olunacaq.
+========================================
+LIVE SERVER
+========================================
 
-   Məsələn:
+Render server hazır olduqda buraya
+server linkini yazacağıq.
 
-   https://gift-race-server.onrender.com
+Məsələn:
 
-   Server hazır olanda aşağıdakı
-   URL-i dəyişəcəyik.
+const LIVE_SERVER_URL =
+"wss://gift-race-server.onrender.com";
+
+Hazırda boş saxlanılıb.
 */
+
 
 const LIVE_SERVER_URL = "";
 
-
-/*
-   Əgər server URL yazılıbsa,
-   WebSocket bağlantısı qurulur.
-*/
 
 function connectLiveServer(){
 
     if(!LIVE_SERVER_URL){
 
-        console.log(
-            "Live server hələ qoşulmayıb."
-        );
+        statusEl.textContent =
+        "● LIVE SYSTEM READY";
 
         return;
     }
@@ -1075,37 +1000,27 @@ function connectLiveServer(){
     try{
 
         const socket =
-            new WebSocket(
-                LIVE_SERVER_URL
-            );
+        new WebSocket(
+            LIVE_SERVER_URL
+        );
 
 
         socket.onopen = function(){
 
-            console.log(
-                "LIVE SERVER CONNECTED"
-            );
+            statusEl.textContent =
+            "● LIVE CONNECTED";
 
         };
 
 
-        socket.onmessage = function(event){
+        socket.onmessage =
+        function(event){
 
             try{
 
                 const data =
-                    JSON.parse(event.data);
+                JSON.parse(event.data);
 
-
-                /*
-                   Serverdən gələn məlumat:
-
-                   {
-                     type:"gift",
-                     gift:"crown",
-                     coins:100
-                   }
-                */
 
                 if(data.type === "gift"){
 
@@ -1116,12 +1031,9 @@ function connectLiveServer(){
 
                 }
 
-            }catch(error){
+            }catch(e){
 
-                console.log(
-                    "Server data error",
-                    error
-                );
+                console.log(e);
 
             }
 
@@ -1130,44 +1042,35 @@ function connectLiveServer(){
 
         socket.onclose = function(){
 
-            console.log(
-                "LIVE SERVER DISCONNECTED"
-            );
+            statusEl.textContent =
+            "● LIVE DISCONNECTED";
 
         };
 
 
-        socket.onerror = function(error){
+        socket.onerror = function(){
 
-            console.log(
-                "LIVE SERVER ERROR",
-                error
-            );
+            statusEl.textContent =
+            "● LIVE CONNECTION ERROR";
 
         };
 
-    }catch(error){
 
-        console.log(error);
+    }catch(e){
+
+        console.log(e);
 
     }
 
 }
 
 
-/* =========================
-   RESIZE
-========================= */
-
 window.addEventListener(
-    "resize",
-    updateScreen
-);
+"resize",
+function(){
+    updateScreen();
+});
 
-
-/* =========================
-   START
-========================= */
 
 updateScreen();
 
